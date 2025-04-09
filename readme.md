@@ -35,8 +35,8 @@ A fun and minimal cricket-themed browser game where you play against the compute
 
 ## 🚀 Demo
 
-> *(Optional: If hosted on GitHub Pages or elsewhere, include the link here)*  
-[Play the Game](https://your-username.github.io/bat-ball-stump-game)
+> 
+[Play the Game](https://bikrampy.github.io/Bat-Ball-Stump-Game/)
 
 ---
 
