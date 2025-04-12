@@ -1,176 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cricket Game</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
-      min-height: 100vh;
-    }
-
-    header {
-      margin-top: 40px;
-    }
-
-    h1 {
-      font-weight: 600;
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #222;
-    }
-
-    main {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    button {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 12px 24px;
-      font-size: 16px;
-      margin: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
-
-    button:hover {
-      background-color: #e0e0e0;
-      transform: translateY(-2px);
-    }
-
-    #result {
-      margin-top: 30px;
-      font-size: 1.3rem;
-      color: #444;
-      background-color: #fff;
-      padding: 15px 20px;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
-      max-width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
-
-    hr {
-      width: 80%;
-      margin-top: 10px;
-      border: none;
-      height: 1px;
-      background-color: #ddd;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Bat Ball Stump Game</h1>
-  </header>
-  <hr />
-  <main>
-    <button onclick="
-      let userChoice = 'Bat';
-      let computerChoice;
-      let random = Math.random() * 3;
-      if (random >= 0 && random <= 1){
-        computerChoice = 'Bat';
-      } else if (random > 1 && random <= 2){
-        computerChoice = 'Ball';
-      } else {
-        computerChoice = 'Stump';
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Game</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        min-height: 100vh;
       }
 
-      let resultMsg;
-      if (userChoice === computerChoice) {
-        resultMsg = `⚖️ It's a tie.`;
-      } else if (
-        (userChoice === 'Bat' && computerChoice === 'Ball') ||
-        (userChoice === 'Ball' && computerChoice === 'Stump') ||
-        (userChoice === 'Stump' && computerChoice === 'Bat')
-      ) {
-        resultMsg = `🏆 You won!`;
-      } else {
-        resultMsg = `😞 Computer has won.`;
+      header {
+        margin-top: 40px;
       }
 
+      h1 {
+        font-weight: 600;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #222;
+      }
+
+      main {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      button {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 12px 24px;
+        font-size: 16px;
+        margin: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      button:hover {
+        background-color: #e0e0e0;
+        transform: translateY(-2px);
+      }
+
+      #result {
+        margin-top: 30px;
+        font-size: 1.3rem;
+        color: #444;
+        background-color: #fff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+      hr {
+        width: 80%;
+        margin-top: 10px;
+        border: none;
+        height: 1px;
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Bat Ball Stump Game</h1>
+    </header>
+    <hr />
+    <main>
+      <button
+        onclick="
+      userChoice = 'Bat';
+      computerChoice = generateComputerChoice();
+      resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
-    ">
-      Bat
-    </button>
+    "
+      >
+        Bat
+      </button>
 
-    <button onclick="
-      let userChoice = 'Ball';
-      let computerChoice;
-      let random = Math.random() * 3;
-      if (random >= 0 && random <= 1){
-        computerChoice = 'Bat';
-      } else if (random > 1 && random <= 2){
-        computerChoice = 'Ball';
-      } else {
-        computerChoice = 'Stump';
-      }
-
-      let resultMsg;
-      if (userChoice === computerChoice) {
-        resultMsg = `⚖️ It's a tie.`;
-      } else if (
-        (userChoice === 'Bat' && computerChoice === 'Ball') ||
-        (userChoice === 'Ball' && computerChoice === 'Stump') ||
-        (userChoice === 'Stump' && computerChoice === 'Bat')
-      ) {
-        resultMsg = `🏆 You won!`;
-      } else {
-        resultMsg = `😞 Computer has won.`;
-      }
-
+      <button
+        onclick="
+      userChoice = 'Ball';
+      computerChoice = generateComputerChoice();
+      resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
-    ">
-      Ball
-    </button>
+    "
+      >
+        Ball
+      </button>
 
-    <button onclick="
-      let userChoice = 'Stump';
-      let computerChoice;
-      let random = Math.random() * 3;
-      if (random >= 0 && random <= 1){
-        computerChoice = 'Bat';
-      } else if (random > 1 && random <= 2){
-        computerChoice = 'Ball';
-      } else {
-        computerChoice = 'Stump';
-      }
-
-      let resultMsg;
-      if (userChoice === computerChoice) {
-        resultMsg = `⚖️ It's a tie.`;
-      } else if (
-        (userChoice === 'Bat' && computerChoice === 'Ball') ||
-        (userChoice === 'Ball' && computerChoice === 'Stump') ||
-        (userChoice === 'Stump' && computerChoice === 'Bat')
-      ) {
-        resultMsg = `🏆 You won!`;
-      } else {
-        resultMsg = `😞 Computer has won.`;
-      }
-
+      <button
+        onclick="
+      userChoice = 'Stump';
+      computerChoice = generateComputerChoice();
+      resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
-    ">
-      Stump
-    </button>
+    "
+      >
+        Stump
+      </button>
 
-    <p id="result"></p>
-  </main>
-</body>
+      <p id="result"></p>
+    </main>
+    <script>
+      let computerChoice;
+      function generateComputerChoice() {
+        let random = Math.random() * 3;
+        if (random >= 0 && random <= 1) {
+          return "Bat";
+        } else if (random > 1 && random <= 2) {
+          return "Ball";
+        } else {
+          return "Stump";
+        }
+      }
+      let userChoice;
+      let resultMsg;
+      function generateResult(userChoice, computerChoice) {
+        var resultMsg;
+        if (userChoice === computerChoice) {
+          return `⚖️ It's a tie`;
+        } else if (userChoice === "Bat" && computerChoice === "Ball") {
+          return `🏆 You won.`;
+        } else if (userChoice === "Bat" && computerChoice === "Stump") {
+          return `😞 Computer has won.`;
+        } else if (userChoice === "Ball" && computerChoice === "Bat") {
+          return `😞 Computer has won.`;
+        } else if (userChoice === "Ball" && computerChoice === "Stump") {
+          return `🏆 You won.`;
+        } else if (userChoice === "Stump" && computerChoice === "Bat") {
+          return `🏆 You won.`;
+        } else if (userChoice === "Stump" && computerChoice === "Ball") {
+          return `😞 Computer has won.`;
+        }
+      }
+    </script>
+  </body>
 </html>
