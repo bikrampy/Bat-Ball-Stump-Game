@@ -65,6 +65,20 @@
         line-height: 1.6;
       }
 
+      #display {
+        margin-top: 30px;
+        font-size: 1.3rem;
+        color: #444;
+        background-color: #fff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
       hr {
         width: 80%;
         margin-top: 10px;
@@ -86,6 +100,7 @@
       computerChoice = generateComputerChoice();
       resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
+      document.getElementById('display').innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
     "
       >
         Bat
@@ -97,6 +112,7 @@
       computerChoice = generateComputerChoice();
       resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
+      document.getElementById('display').innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
     "
       >
         Ball
@@ -108,14 +124,21 @@
       computerChoice = generateComputerChoice();
       resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
+      document.getElementById('display').innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
     "
       >
         Stump
       </button>
 
       <p id="result"></p>
+      <p id="display"></p>
     </main>
     <script>
+      let score = {
+        win: 0,
+        loss: 0,
+        tie: 0,
+      };
       let computerChoice;
       function generateComputerChoice() {
         let random = Math.random() * 3;
@@ -132,18 +155,25 @@
       function generateResult(userChoice, computerChoice) {
         var resultMsg;
         if (userChoice === computerChoice) {
+          score.tie ++;
           return `⚖️ It's a tie`;
         } else if (userChoice === "Bat" && computerChoice === "Ball") {
+          score.win ++;
           return `🏆 You won.`;
         } else if (userChoice === "Bat" && computerChoice === "Stump") {
+          score.loss ++;
           return `😞 Computer has won.`;
         } else if (userChoice === "Ball" && computerChoice === "Bat") {
+          score.loss ++;
           return `😞 Computer has won.`;
         } else if (userChoice === "Ball" && computerChoice === "Stump") {
+          score.win ++;
           return `🏆 You won.`;
         } else if (userChoice === "Stump" && computerChoice === "Bat") {
+          score.win ++;
           return `🏆 You won.`;
         } else if (userChoice === "Stump" && computerChoice === "Ball") {
+          score.loss ++;
           return `😞 Computer has won.`;
         }
       }
