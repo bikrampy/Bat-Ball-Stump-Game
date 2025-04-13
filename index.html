@@ -132,14 +132,20 @@
 
       <p id="result"></p>
       <p id="display"></p>
+      <button onclick="resetScore()">🔁 Reset Score</button>
     </main>
     <script>
-      let score = {
+      // Initialize score from localStorage if available
+      let score = JSON.parse(localStorage.getItem("cricketScore")) || {
         win: 0,
         loss: 0,
         tie: 0,
       };
+
       let computerChoice;
+      let userChoice;
+      let resultMsg;
+
       function generateComputerChoice() {
         let random = Math.random() * 3;
         if (random >= 0 && random <= 1) {
@@ -150,33 +156,59 @@
           return "Stump";
         }
       }
-      let userChoice;
-      let resultMsg;
+
       function generateResult(userChoice, computerChoice) {
-        var resultMsg;
+        let resultMsg;
         if (userChoice === computerChoice) {
-          score.tie ++;
+          score.tie++;
+          saveScore();
           return `⚖️ It's a tie`;
         } else if (userChoice === "Bat" && computerChoice === "Ball") {
-          score.win ++;
+          score.win++;
+          saveScore();
           return `🏆 You won.`;
         } else if (userChoice === "Bat" && computerChoice === "Stump") {
-          score.loss ++;
+          score.loss++;
+          saveScore();
           return `😞 Computer has won.`;
         } else if (userChoice === "Ball" && computerChoice === "Bat") {
-          score.loss ++;
+          score.loss++;
+          saveScore();
           return `😞 Computer has won.`;
         } else if (userChoice === "Ball" && computerChoice === "Stump") {
-          score.win ++;
+          score.win++;
+          saveScore();
           return `🏆 You won.`;
         } else if (userChoice === "Stump" && computerChoice === "Bat") {
-          score.win ++;
+          score.win++;
+          saveScore();
           return `🏆 You won.`;
         } else if (userChoice === "Stump" && computerChoice === "Ball") {
-          score.loss ++;
+          score.loss++;
+          saveScore();
           return `😞 Computer has won.`;
         }
       }
+
+      function saveScore() {
+        localStorage.setItem("cricketScore", JSON.stringify(score));
+      }
+
+      function resetScore() {
+        score = { win: 0, loss: 0, tie: 0 };
+        localStorage.removeItem("cricketScore");
+        document.getElementById("result").innerText = "";
+        document.getElementById(
+          "display"
+        ).innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
+      }
+
+      // On page load: show current score
+      window.onload = () => {
+        document.getElementById(
+          "display"
+        ).innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
+      };
     </script>
   </body>
 </html>
