@@ -1,17 +1,19 @@
-# 🏏 Bat Ball Stump Game
 
-A fun and minimal cricket-themed browser game where you play against the computer by choosing between **Bat**, **Ball**, or **Stump**. The computer makes a random choice and the winner is determined based on predefined rules.
+# 🏏 Bat Ball Stump Game (Cricket Game Project)
+
+A fun and sleek cricket-themed browser game where you play against the computer by choosing between **Bat**, **Ball**, or **Stump**. The computer makes a random choice, and the winner is determined by classic rules.
 
 ---
 
 ## 🎮 How to Play
 
-- Click on **Bat**, **Ball**, or **Stump**.
-- The computer will randomly make its choice.
-- The result will be shown on screen with fun emojis:
+- Click on one of the buttons: **Bat**, **Ball**, or **Stump**.
+- The computer randomly makes its choice.
+- The result is shown on screen with emojis:
   - 🏆 You Won!
   - 😞 Computer Won
   - ⚖️ It's a Tie
+- The scoreboard tracks your wins, losses, and ties even after refreshing the page!
 
 ---
 
@@ -26,17 +28,19 @@ A fun and minimal cricket-themed browser game where you play against the compute
 
 ## 🌟 Features
 
-- Sleek & minimal UI using pure HTML and CSS
-- Interactive gameplay without using functions
-- Uses emoji-based feedback for a fun user experience
-- No external dependencies or libraries
+- 🎨 Minimal and responsive UI with modern fonts and shadows
+- 🎵 Sound effects for win, loss, and tie (requires sound files)
+- 💾 Score persistence using `localStorage` + JSON
+- 🎯 Emoji-based gameplay feedback
+- 🔁 Reset button to clear stored scores
+- 🎉 Result animations for better user experience
+- 💡 Easy to extend and understand for beginners
 
 ---
 
-## 🚀 Demo
+## 🚀 Live Demo
 
-> 
-[Play the Game](https://bikrampy.github.io/Bat-Ball-Stump-Game/)
+👉 [Play the Game on GitHub Pages](https://bikrampy.github.io/Bat-Ball-Stump-Game/)
 
 ---
 
@@ -45,16 +49,49 @@ A fun and minimal cricket-themed browser game where you play against the compute
 ```
 📦 bat-ball-stump-game
 ├── index.html
+├── win.mp3
+├── lose.mp3
+├── tie.mp3
 └── readme.md
 ```
 
 ---
 
-## 💡 Future Improvements
+## ✅ Setup
 
-- Add score tracking
-- Add reset and play again buttons
-- Add animations or sound effects
-- Make it mobile responsive
+1. Clone the repository  
+   `git clone https://github.com/your-username/Bat-Ball-Stump-Game.git`
+
+2. Open `index.html` in your browser.
+
+3. (Optional) Add your own `win.mp3`, `lose.mp3`, and `tie.mp3` in the same folder.
 
 ---
+
+## 🧰 Tech Used
+
+- HTML
+- CSS
+- JavaScript
+- localStorage + JSON
+
+---
+
+## 🔮 Future Ideas
+
+- Add confetti effects and crowd sounds
+- Create game levels or AI difficulty
+- Make the UI fully mobile responsive
+
+---
+
+## 👨‍💻 Author
+
+**Bikram Py**  
+GitHub: [@bikrampy](https://github.com/bikrampy)
+
+---
+
+## 📜 License
+
+MIT License – free to use, modify, and share.
