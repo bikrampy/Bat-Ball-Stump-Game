@@ -51,6 +51,10 @@
         transform: translateY(-2px);
       }
 
+      button:active {
+        transform: scale(0.96);
+      }
+
       #result {
         margin-top: 30px;
         font-size: 1.3rem;
@@ -63,6 +67,7 @@
         margin-left: auto;
         margin-right: auto;
         line-height: 1.6;
+        transition: all 0.3s ease;
       }
 
       #display {
@@ -101,6 +106,8 @@
       resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
       document.getElementById('display').innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
+      animateResult();
+      playSound(resultMsg);
     "
       >
         Bat
@@ -113,6 +120,8 @@
       resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
       document.getElementById('display').innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
+      animateResult();
+      playSound(resultMsg);
     "
       >
         Ball
@@ -125,6 +134,8 @@
       resultMsg = generateResult(userChoice, computerChoice);
       document.getElementById('result').innerText = `🎯 Your choice: ${userChoice}\n🤖 Computer's choice: ${computerChoice}\n${resultMsg}`;
       document.getElementById('display').innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
+      animateResult();
+      playSound(resultMsg);
     "
       >
         Stump
@@ -134,8 +145,13 @@
       <p id="display"></p>
       <button onclick="resetScore()">🔁 Reset Score</button>
     </main>
+
+    <!-- Audio Files -->
+    <audio id="winSound" src="win.mp3" preload="auto"></audio>
+    <audio id="loseSound" src="lose.mp3" preload="auto"></audio>
+    <audio id="tieSound" src="tie.mp3" preload="auto"></audio>
+
     <script>
-      // Initialize score from localStorage if available
       let score = JSON.parse(localStorage.getItem("cricketScore")) || {
         win: 0,
         loss: 0,
@@ -203,7 +219,25 @@
         ).innerText = `Won: ${score.win}\nLost: ${score.loss}\nTie: ${score.tie}`;
       }
 
-      // On page load: show current score
+      function animateResult() {
+        const result = document.getElementById("result");
+        result.style.transform = "scale(1.05)";
+        result.style.transition = "transform 0.2s";
+        setTimeout(() => {
+          result.style.transform = "scale(1)";
+        }, 200);
+      }
+
+      function playSound(resultText) {
+        if (resultText.includes("won.") && !resultText.includes("Computer")) {
+          document.getElementById("winSound").play();
+        } else if (resultText.includes("Computer")) {
+          document.getElementById("loseSound").play();
+        } else if (resultText.includes("tie")) {
+          document.getElementById("tieSound").play();
+        }
+      }
+
       window.onload = () => {
         document.getElementById(
           "display"
